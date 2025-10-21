@@ -1,0 +1,5 @@
+﻿pollutant_type,composition_percentage,average_concentration,unit
+PM 10,37.3997718,20.51333333,µg/m³
+PM 2.5,23.5906019,12.93916667,µg/m³
+CO,37.3997718,0.53375,ppm
+Other,1.61,0.023029,ppm

@@ -1,0 +1,90 @@
+body *{
+  font-family: 'Open Sans', sans-serif;
+  color: #333; /* Dark gray for better readability */
+}
+
+h1 {
+  font-family:'Times New Roman', serif;
+  font-weight: 550;
+  color: #0056b3; /* A primary brand color for the main title */
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+
+}
+
+body {
+  background-color: #f4f4f4; /* Light gray background */
+}
+
+.page {
+  width: 950px; /* Wider canvas to give maps and charts more room */
+  background-color: white;
+  margin: 20px auto; /* Centers the page vertically and horizontally */
+  padding: 50px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+.vis-container {
+  width: 100%;
+  margin-top: 20px;
+  /* Centering the Vega-Lite output within its container */
+  display: flex;
+  justify-content: center;
+}
+
+.pure-g {
+  margin-bottom: 30px;
+}
+
+/* creates the positioning anchor. */
+.chart-row {
+  position: relative; 
+}
+
+.description {
+  margin-top: 20px;
+}
+
+.description-right{
+  margin-top: 58px;
+  padding-left: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertically align with chart */
+}
+
+.description-donut {
+  width: 100%;          /* make it fill the right third of the row's width */
+  padding-right: 100px;     /* add some space from the chart's legend */
+  box-sizing: border-box; /* ensures padding is inside the width, preventing overflow */
+}
+
+.description-left {
+  padding-right: 10px;
+}
+
+/* Custom CSS to fix the interactive controls layout */
+.vega-bindings {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 35px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  justify-content: center; /* align slider & dropdown to center */
+}
+
+.vega-bindings .vega-bind {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+

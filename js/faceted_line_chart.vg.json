@@ -1,0 +1,81 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Pollutant concentration trend (2017-2021)",
+  "data": {
+    "url": "data/2017-2021_air_pollution.csv"
+  },
+  
+  "transform": [
+    {
+      "calculate": "format(datum.average_concentration, '.2f') + ' ' + datum.unit",
+      "as": "concentration_with_unit"
+    }
+  ],
+
+  "selection":{
+    "pollutant_highlight":{
+      "type" : "multi",
+      "fields" : ["pollutant_type"],
+      "bind": "legend",
+      "toggle": "true"
+    }
+  },
+
+  "mark": {
+    "type": "line",
+    "point": true
+  },
+  "encoding": {
+    "row": {
+      "field": "unit",
+      "type": "nominal",
+      "header": {"title": "Measurement Unit"}
+    },
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": "Year"
+    },
+    "y": {
+      "field": "average_concentration",
+      "type": "quantitative",
+      "title": "Average Concentration",
+      "scale": {"type": "log"}
+    },
+    "color": {
+      "field": "pollutant_type",
+      "type": "nominal",
+      "title": "Pollutant Type",
+      "scale":{
+        "domain": ["CO", "NO2", "O3", "SO2", "PM 2.5", "PM 10"],
+        "range": ["#0072B2", "#E69F00", "#009E73", "#D55E00", "#CC79A7", "#999999"]
+      }
+    },
+
+    "opacity":{
+      "condition": {"selection": "pollutant_highlight", "value": 1},
+      "value": 0.3
+    },
+
+    "tooltip": [
+      {"field": "year", "type": "ordinal", "title": "Year"},
+      {"field": "pollutant_type", "type": "nominal", "title": "Pollutant Type"},
+      {"field": "concentration_with_unit", "type": "nominal", "title": "Concentration"}
+    ]
+  },
+
+  "resolve": {
+    "scale": {"y": "independent"}
+  },
+
+  "width": 300,
+  "height": 200,
+  "config":{
+    "legend": {
+      "rowPadding": 10,
+      "titlePadding":10,
+      "titleFontSize": 14,
+      "labelFontSize": 12
+    }
+  }
+}

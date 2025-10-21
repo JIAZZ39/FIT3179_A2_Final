@@ -1,0 +1,71 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": {"step": 80},
+  "data": {"url": "data/2017-2021_birth_death_difference.csv"},
+
+  "layer": [
+    {
+      "mark": {"type": "area", "opacity": 0.7},
+      "encoding": {
+        "y": {
+            "field": "Count",
+            "type": "quantitative",
+            "title": "Total People",
+            "stack": null
+        },
+        "color": {
+          "field": "Type",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Births", "Deaths"],
+            "range": ["purple", "red"]
+          }
+        }
+      }
+    },
+    
+    {
+      "transform": [
+        {
+          "pivot": "Type",
+          "value": "Count",
+          "groupby": ["Year"]
+        },
+        {
+          "calculate": "datum.Births - datum.Deaths",
+          "as": "Net_Growth"
+        }
+      ],
+      "mark": "rule",
+      "encoding": {
+        "opacity": {
+          "condition": {"value": 0.3, "selection": "hover"},
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "Year", "type": "ordinal"},
+          {"field": "Births", "type": "quantitative", "format": ",", "title": "Total Births"},
+          {"field": "Deaths", "type": "quantitative", "format": ",", "title": "Total Deaths"},
+          {"field": "Net_Growth", "type": "quantitative", "format": ",", "title": "Net Growth"}
+        ]
+      },
+      "selection": {
+        "hover": {
+          "type": "single",
+          "fields": ["Year"],
+          "nearest": true,
+          "on": "mouseover",
+          "empty": "none"
+        }
+      }
+    }
+  ],
+
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "title": "Year"
+    }
+  }
+}

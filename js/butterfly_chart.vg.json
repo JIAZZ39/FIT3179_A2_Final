@@ -1,0 +1,72 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Population pyramid for Malaysia in 2021.",
+  "data": {
+    "url": "data/2021_sex_age_population.csv"
+  },
+  "spacing": 0,
+  
+  "hconcat": [
+    {
+      "transform": [
+        {"filter": {"field":"sex", "equal":"female"}}
+      ],
+      "title": "Female",
+      "width": 250,
+      "mark": "bar",
+      "encoding": {
+        "y": {"field": "age_group", "axis": null, "sort": "descending"},
+        "x": {
+          "aggregate": "sum",
+          "field": "total_population",
+          "title": "Population",
+          "axis": {"format": "s"},
+          "sort":"descending"
+
+        },
+        "color": {"field": "sex", "scale": {"range": ["#d4749e", "#6baed6"]}, "legend": null},
+        "tooltip": [
+          {"field": "sex", "type": "nominal", "title": "Gender"}, 
+          {"field": "age_group", "type": "ordinal", "title": "Age Group"},
+          {"field": "total_population", "type": "quantitative", "title": "Population", "format": ","}
+        ]
+      }
+    },
+    {
+      "width": 45,
+      "view": {"stroke": null},
+      "mark": {"type": "text", "align": "center"},
+      "encoding": {
+        "y": {"field": "age_group", "type": "ordinal", "axis": null, "sort": "descending"},
+        "text": {"field": "age_group"}
+      }
+    },
+    {
+      "transform": [
+        {"filter": {"field":"sex", "equal":"male"}}
+      ],
+      "title": "Male",
+      "width": 250,
+      "mark": "bar",
+      "encoding": {
+        "y": {"field": "age_group", "title": null, "axis": null, "sort": "descending"},
+        "x": {
+          "aggregate": "sum",
+          "field": "total_population",
+          "title": "Population",
+          "axis": {"format": "s"}
+        },
+        "color": {"field": "sex", "legend": null},
+        "tooltip": [
+          {"field": "sex", "type": "nominal", "title": "Gender"}, 
+          {"field": "age_group", "type": "ordinal", "title": "Age Group"},
+          {"field": "total_population", "type": "quantitative", "title": "Population", "format": ","}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"grid": false}
+  }
+}

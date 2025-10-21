@@ -1,0 +1,97 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Air Pollutant Composition in 2021 (normalized across units) - labels aligned and centered title",
+  "data": {
+    "url": "data/2021_top3_air_pollution_composition.csv"
+  },
+
+  "width": 280,
+  "height": 300,
+  "view": {"stroke": null},
+
+  "transform": [
+    {
+      "calculate": "format(datum.average_concentration, '.2f') + ' ' + datum.unit",
+      "as": "concentration_with_unit"
+    },
+    {
+      "calculate": "format(datum.composition_percentage, '.1f') + '%'",
+      "as": "composition_label"
+    },
+    {
+      "calculate": "[datum.pollutant_type, datum.composition_label]",
+      "as": "full_label"
+    }
+  ],
+
+  "layer": [
+    {
+      "mark": {
+        "type": "arc",
+        "innerRadius": 82,
+        "outerRadius": 155
+      },
+      "encoding": {
+        "theta": {
+          "field": "composition_percentage",
+          "type": "quantitative",
+          "stack": true,
+          "title": "Composition (%)"
+        },
+        "color": {
+          "field": "pollutant_type",
+          "type": "nominal",
+          "title": "Pollutant Type",
+          "scale":{
+            "domain": ["CO", "PM 2.5", "PM 10", "Other"],
+            "range": ["#0072B2","#CC79A7", "#999999", "#E69F00"]
+          },
+          "legend":{
+            "orient": "bottom"          
+          }
+        },
+
+        "tooltip": [
+          {"field": "pollutant_type", "title": "Pollutant"},
+          {"field": "concentration_with_unit", "title": "Concentration"},
+          {"field": "composition_label", "title": "Composition"}
+        ]
+      }
+    },
+
+    {
+      "mark": {
+        "type": "text", 
+        "radius": 118, 
+        "fontSize": 15, 
+        "align": "center",
+        "dy": -5 
+      },
+      "encoding": {
+        "theta": {"field": "composition_percentage", "type": "quantitative", "stack": true},
+        "text": {"field": "full_label", "type": "nominal"},
+        "color": {"value": "white"}
+      }
+    },
+
+    {
+      "data": {"values": [{}]},
+      "mark": {
+        "type": "text",
+        "text": ["2021 Air Pollutant", "Composition"],
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "align": "center",
+        "baseline": "middle"
+      }
+    }
+  ],
+  "config":{
+    "legend": {
+      "columnPadding": 20,
+      "titlePadding":10,
+      "titleFontSize": 14,
+      "labelFontSize": 12
+    }
+  }
+}
