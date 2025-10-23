@@ -54,7 +54,7 @@
     </div>
     <!-- end pure grid group -->
 
-    <!-- Section 4: Butterfly Chart (Side-by-side layout) -->
+    <!-- Section 3: Butterfly Chart (Side-by-side layout) -->
     <div class="pure-g">
       <!-- Left: Chart -->
       <div class="pure-u-2-3">
@@ -76,7 +76,7 @@
     </div>
     <!-- end pure grid group -->
 
-    <!-- Section : Death Choropleth Map (Full Width) -->
+    <!-- Section 4 : Death Choropleth Map (Full Width) -->
     <div class="pure-g">
       <div class="pure-u-1-1">
         <h2>Death Rate Across Malaysia (2021)</h2>
@@ -88,7 +88,7 @@
     </div>
     <!-- end pure grid group -->
 
-    <!-- Section 3: Bubble-Line Chart (Full Width) -->
+    <!-- Section 5: Bubble-Line Chart (Full Width) -->
     <div class="pure-g">
       <div class="pure-u-1-1">
         <h2>Communicable Disease Trends by Category (2011-2021)</h2>
@@ -101,13 +101,15 @@
     </div>
     <!-- end pure grid group -->
 
-    <!-- Section 3: Bubble-Line Chart (Full Width) -->
+    <!-- Section 6: Faceted Line Chart & Donut Chart  -->
     <div class="pure-g">
+      <!-- Left: Faceted Line Chart -->
       <div class="pure-u-2-3">
         <h2>Air Pollutant Concentration Trend (2017-2021)</h2>
         <div id="faceted_line_chart" class="vis-container"></div>
       </div>
-
+      
+      <!-- Right: Donut Chart & Description -->
       <div class="pure-u-1-3">
         <div id="donut_chart" class="vis-container"></div>
 
@@ -120,7 +122,7 @@
       </div>
     </div>
 
-    <!-- Section : Area Chart -->
+    <!-- Section 7 : Area Chart -->
     <div class="pure-g">
       <!-- Left: Chart -->
       <div class="pure-u-2-3">
@@ -141,7 +143,7 @@
     <!-- end pure grid group -->
 
 
-
+    <!-- Section 8 (Last Section) : Metadata  -->
     <div class="pure-g" style="border-top: 1px solid #ccc;">
       <div class="pure-u-1-1" style="font-size: 13px; color: #555;">
         <p>Author: Lim Jia Yi<br>
@@ -155,30 +157,10 @@
         </p>
       </div>
     </div>
-
   </div> 
 
-
-
-    
-
-    <!-- Section 3: Bubble-Line Chart (Full Width) -->
-    <!-- <div class="pure-g">
-      <div class="pure-u-1-1">
-        <h2>Draft</h2>
-        
-        <div id="draft" class="vis-container"></div>
-
-        <p class="description">
-          Try Draft.
-        </p>
-      </div>
-    </div> -->
-    <!-- end pure grid group -->
-
-
   <script type="text/javascript">
-    // Define the paths to your JSON files
+    // Define the paths to JSON files
     var specBirthChoropleth = "js/birth_choropleth_map.vg.json";
     var specDeathChoropleth = "js/death_choropleth_map.vg.json";
     var specBubbleLine = "js/bubble_line_chart.vg.json";
@@ -186,8 +168,6 @@
     var specFacetedLine = "js/faceted_line_chart.vg.json";
     var specDonutChart = "js/donut_chart.vg.json";
     var specAreaChart = "js/area_chart.vg.json";
-
-
 
     // Embed the Birth Choropleth Map
     vegaEmbed('#birth_choropleth_map', specBirthChoropleth, { "actions": false }).catch(console.error);
@@ -207,13 +187,13 @@
     // Embed the Donut Chart
     vegaEmbed('#donut_chart', specDonutChart, { "actions": false }).catch(console.error);
 
-    // Embed the Donut Chart
+    // Embed the Area Chart
     vegaEmbed('#area_chart', specAreaChart, { "actions": false }).catch(console.error);
 
   </script>
 </body>
-
 </html>
+
 
 
 
